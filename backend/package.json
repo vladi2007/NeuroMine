@@ -1,0 +1,21 @@
+{
+  "dependencies": {
+    "express": "^5.2.1",
+    "init": "^0.1.2",
+    "yarn": "^1.22.22"
+  },
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "dev": "tsx watch src/index.ts"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.6",
+    "@types/node": "^25.7.0",
+    "nodemon": "^3.1.14",
+    "ts-node": "^10.9.2",
+    "tsx": "^4.21.0",
+    "typescript": "^6.0.3"
+  },
+  "type": "module"
+}
