@@ -1,0 +1,18 @@
+import js from "@eslint/js";
+import globals from "globals";
+import tseslint from "typescript-eslint";
+import { defineConfig } from "eslint/config";
+import eslintPluginPrettier from 'eslint-plugin-prettier'
+import eslintConfigPrettier from 'eslint-config-prettier'
+export default defineConfig([
+  { files: ["**/*.{js,mjs,cjs,ts,mts,cts}"], plugins: { js, prettier: eslintPluginPrettier, }, extends: ["js/recommended",eslintConfigPrettier,], languageOptions: { globals: globals.browser },
+    rules:{
+      "no-console":'warn',
+      "no-duplicate-imports": 'error',
+      'eqeqeq': ['error', 'always'],
+      'prettier/prettier': 'error',
+      'curly':'warn'
+    } },
+  tseslint.configs.recommended,
+  
+]);
