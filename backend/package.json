@@ -10,7 +10,7 @@
     "dev": "tsx watch src/index.ts",
     "lint:ts": "eslint .",
     "lint:ts:fix": "eslint . --fix",
-    "format":"prettier . --write",
+    "format": "prettier . --write",
     "lint:fix": "yarn lint:ts:fix & yarn format"
   },
   "devDependencies": {

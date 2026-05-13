@@ -10,9 +10,9 @@
     "lint:ts:fix": "eslint . --fix",
     "lint:scss": "stylelint \"**/*.scss\"",
     "lint:scss:fix": "stylelint \"**/*.scss\" --fix",
-    "format":"prettier . --write",
+    "format": "prettier . --write",
     "lint": "yarn lint:ts & yarn lint:scss",
-    "lint:fix": "yarn lint:s:tfix & yarn lint:scss:fix & yarn format",
+    "lint:fix": "yarn lint:ts:fix & yarn lint:scss:fix & yarn format",
     "preview": "vite preview"
   },
   "dependencies": {
