@@ -29,6 +29,7 @@
       "@hooks/*": ["src/hooks/*"],
       "@types/*": ["src/types/*"],
       "@services/*": ["src/services/*"],
+      "@api/*": ["src/api/*"],
       "@config/*": ["src/config/*"]
     }
   },
