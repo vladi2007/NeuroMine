@@ -16,6 +16,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@vkontakte/vk-bridge": "^3.0.1",
+    "mobx": "^6.15.3",
     "react": "^19.2.6",
     "react-dom": "^19.2.6",
     "react-router": "^7.15.0",
