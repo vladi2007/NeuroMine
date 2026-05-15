@@ -10,7 +10,7 @@ app.use(express.json());
 async function start() {
   try {
     await sequelize.authenticate();
-    await sequelize.sync(); // dev only
+    
 
     console.log("DB connected");
 
@@ -19,10 +19,7 @@ async function start() {
       res.json(users);
     });
 
-    app.post("/users", async (req, res) => {
-      const user = await User.create(req.body);
-      res.json(user);
-    });
+    
 
     app.listen(6000, () => {
       console.log("Backend running on 6000");
