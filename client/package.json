@@ -16,6 +16,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@tanstack/react-query": "^5.100.10",
     "@vkontakte/vk-bridge": "^3.0.1",
     "axios": "^1.16.1",
     "mobx": "^6.15.3",

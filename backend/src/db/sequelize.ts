@@ -9,5 +9,8 @@ export const sequelize = new Sequelize(
     port: Number(process.env.DATABASE_PORT || 3306),
     dialect: "mysql",
     logging: false,
+     retry: {
+    max: 10,
+  },
   }
 );

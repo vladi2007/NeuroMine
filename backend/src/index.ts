@@ -1,12 +1,22 @@
 import express from "express";
 import "dotenv/config";
-
+import cors from "cors";
+import gameRouter from "./routes/game.routes.js";
 import { sequelize } from "./db/sequelize.js";
-import { User } from "./models/User.js";
 
 const app = express();
 app.use(express.json());
 
+app.use(
+  cors({
+    origin: [
+      "https://sketchily-fortuitous-phoebe.cloudpub.ru",
+      "http://localhost:5173"
+    ],
+    credentials: true,
+  })
+);
+app.use("/", gameRouter);
 async function start() {
   try {
     await sequelize.authenticate();
@@ -14,10 +24,6 @@ async function start() {
 
     console.log("DB connected");
 
-    app.get("/users", async (_, res) => {
-      const users = await User.findAll();
-      res.json(users);
-    });
 
     
 

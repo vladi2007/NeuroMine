@@ -1,46 +1,47 @@
-import { DataTypes } from "sequelize";
+import { DataTypes, Model } from "sequelize";
 import { sequelize } from "../db/sequelize.js";
 
-export const User = sequelize.define("User", {
-  id: {
-    type: DataTypes.INTEGER,
-    autoIncrement: true,
-    primaryKey: true,
-  },
+export class User extends Model {
+  declare id: number;
+  declare vk_id: number;
 
-  vkId: {
-    type: DataTypes.STRING,
-    unique: true,
-  },
+  declare coins: number;
+  declare tapPower: number;
+  declare lastTapAt: number;
+}
 
-  firstName: {
-    type: DataTypes.STRING,
-    allowNull: true,
-  },
+User.init(
+  {
+    id: {
+      type: DataTypes.INTEGER,
+      autoIncrement: true,
+      primaryKey: true,
+    },
 
-  lastName: {
-    type: DataTypes.STRING,
-    allowNull: true,
-  },
+    vk_id: {
+      type: DataTypes.BIGINT,
+      allowNull: false,
+      unique: true,
+    },
 
-  photo: {
-    type: DataTypes.STRING,
-    allowNull: true,
-  },
+    coins: {
+      type: DataTypes.INTEGER,
+      defaultValue: 0,
+    },
 
-  email: {
-    type: DataTypes.STRING,
-    unique: true,
-    allowNull: true,
-  },
+    tapPower: {
+      type: DataTypes.INTEGER,
+      defaultValue: 1,
+    },
 
-  phone: {
-    type: DataTypes.STRING,
-    allowNull: true,
+    lastTapAt: {
+      type: DataTypes.BIGINT,
+      defaultValue: 0,
+    },
   },
-
-  coins: {
-    type: DataTypes.INTEGER,
-    defaultValue: 0,
-  },
-});
+  {
+    sequelize,
+    modelName: "User",
+    tableName: "users",
+  }
+);

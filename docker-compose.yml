@@ -5,6 +5,37 @@ services:
     build: ./backend
     expose:
       - "6000"
+    environment:
+      DATABASE_HOST: mysql
+      DATABASE_PORT: 3306
+      DATABASE_USER: root
+      DATABASE_PASSWORD: password
+      DATABASE_NAME: mydb
+      VK_SECRET: ${VK_SECRET}
+    depends_on:
+      - mysql
+    
+    networks:
+      - neuromine-net
+
+  mysql:
+    container_name: mysql
+    image: mysql:latest
+    restart: unless-stopped
+    expose:
+      - "3306"
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: mydb
+    volumes:
+      - mysql_prod_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
     networks:
       - neuromine-net
 
@@ -12,13 +43,15 @@ services:
     build:
       context: .
       dockerfile: client/Dockerfile.prod
-    container_name: react-app
-    restart: unless-stopped
-
     ports:
       - "80:80"
+    depends_on:
+      - backend
     networks:
-      - neuromine-net  
+      - neuromine-net
+
+volumes:
+  mysql_prod_data:
 
 networks:
   neuromine-net:
