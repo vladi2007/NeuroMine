@@ -8,8 +8,8 @@
     "moduleDetection": "force",
     "noImplicitOverride": true,
     "noUncheckedIndexedAccess": true,
-    "rootDir": "/src",
-    "outDir": "/dist",
+    "rootDir": "./src",
+    "outDir": "./dist",
     "paths": {
       "~/*": ["./src/*"]
     },

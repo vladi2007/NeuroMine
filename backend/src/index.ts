@@ -1,11 +1,35 @@
-import express from "express"
+import express from "express";
+import "dotenv/config";
 
-const app = express()
-const port = Number(process.env.PORT) || 6000
+import { sequelize } from "./db/sequelize.js";
+import { User } from "./models/User.js";
 
-app.get("/", (request, response) => {
-  response.send("Express + TypeScript Server")
-})
-app.listen(port, "0.0.0.0", () => {
-  console.log("Backend running", port);
-});
+const app = express();
+app.use(express.json());
+
+async function start() {
+  try {
+    await sequelize.authenticate();
+    await sequelize.sync(); // dev only
+
+    console.log("DB connected");
+
+    app.get("/users", async (_, res) => {
+      const users = await User.findAll();
+      res.json(users);
+    });
+
+    app.post("/users", async (req, res) => {
+      const user = await User.create(req.body);
+      res.json(user);
+    });
+
+    app.listen(6000, () => {
+      console.log("Backend running on 6000");
+    });
+  } catch (e) {
+    console.error(e);
+  }
+}
+
+start();
