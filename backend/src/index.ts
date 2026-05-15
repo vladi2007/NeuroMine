@@ -7,5 +7,5 @@ app.get("/", (request, response) => {
   response.send("Express + TypeScript Server")
 })
 app.listen(port, "0.0.0.0", () => {
-  console.log("Backend running");
+  console.log("Backend running", port);
 });
